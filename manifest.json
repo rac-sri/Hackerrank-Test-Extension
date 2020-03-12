@@ -6,11 +6,17 @@
 
 
     "permissions":[
-
+        "storage",
         "webRequest",
         "webRequestBlocking",
         "*://*/*"
 
+    ],
+    "content_scripts":[
+        {
+            "matches":["http://example.com/*"],
+            "js":["content.js"]
+        }
     ],
 
     "background":{
