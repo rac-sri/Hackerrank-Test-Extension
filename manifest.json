@@ -1,0 +1,20 @@
+{"manifest_version": 2,
+    "name": "Test Invg",
+    "version": "2.1",
+    "description": "Detects opening of new tabs",
+    "background": {
+      "scripts": ["background.js"]
+    },
+    "permissions": ["tabs","https://*.google.com/", "activeTab"],
+    "browser_action":{
+
+    },
+    "content_scripts": [
+        {
+          "matches": [
+            "<all_urls>"
+          ],
+          "js": ["content.js"]
+        }
+      ]
+  }
