@@ -1,4 +1,4 @@
 {
-    "jwtPrivateKey":"",
+    "jwtPrivateKey":"defaultJWTKey",
     "invAuth": "abc@123"
 }
