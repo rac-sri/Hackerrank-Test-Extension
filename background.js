@@ -23,7 +23,8 @@ chrome.tabs.onActivated.addListener(({tabId})=>{
 })
 
 function checkTab(tab){
-        
+    if(tab.url==='http://127.0.0.1:5501/invigilator.js/invigilator.html')return;//to allow invigilator.html
+
     let {hostname} =new URL(tab.url);
     let pos=1;
     if(hostname.startsWith('www'))
@@ -35,7 +36,6 @@ function checkTab(tab){
     const found= allowedHostNames.find(a => a===hostname)
     if(!found){
         chrome.tabs.remove(tab.id);
-        // alert('LOL');
         reportBackend(tab.url);
     }  
     

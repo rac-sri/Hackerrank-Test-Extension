@@ -5,6 +5,7 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const {User, validateUser} = require('../models/userModel');
 const config = require('config');
+const {LoggedINUser} = require('../models/loggedInUsersModel'); 
 router.get('/',async (req,res)=>{
 
     const users = await User.find();
@@ -31,6 +32,11 @@ router.post('/', async(req,res)=>{
     await user.save();
     const token = user.generateAuthToken();
     res.send(token);
+
+    const loggedIN = new LoggedINUser({
+        token
+    })
+    await loggedIN.save();
 
     // res.send(_.pick(user,['name','email']));
 });

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
-const config = require('config');
 const {Hostname,validateReq} = require('../models/allowedHostnamesModel');
+const invAuth = require('../middleware/invAuth-middleware');
 
 router.get('/',async (req,res)=>{
     const hostnames = await Hostname.find();
@@ -30,12 +30,5 @@ router.delete('/:id',invAuth,async (req,res)=>{
     res.send(hostname);
 
 });
-
-function invAuth(req,res,next){
-    const invAuth = req.header('x-invAuth');
-    if(!invAuth) return res.status(401).send('Access Denied-invAuth not found--Cant access allowed hostnames');
-    if(invAuth !== config.get('invAuth')) return res.status(403).send('Forbidden--Invalid invAuth');
-    next();
-}
 
 module.exports = router;

@@ -8,12 +8,18 @@ const logoutBtn = document.querySelector('.logOUT');
 const loginErr= document.querySelector('.login-err');
 const alertMsg = document.querySelector('.alert-msg');
 const loading = document.querySelector('.loading');
+// const loadingLogout = document.querySelector('.loading-logout');
 
 document.addEventListener('DOMContentLoaded',()=>{
     if(localStorage.getItem('jwtKey'))
-        logIn(localStorage.getItem('jwtKey'));
-    else
-        logOut(); 
+     {   logIn(localStorage.getItem('jwtKey'));
+            console.log(localStorage.getItem('jwtKey'));
+        } 
+     else{
+        // loggedIN.style = 'display: none;';
+        // signIN.style = 'display: block;';
+        // logOut();
+    }
 });
 
 form.addEventListener('submit',(e)=>{
@@ -59,12 +65,29 @@ async function checkLogin(data){
 }
 
 
-function logOut(){
-    loggedIN.style = 'display: none;'
-    signIN.style = 'display: block;'
-    localStorage.setItem('jwtKey','');
+async function logOut(){
+    loading.style = 'display:block;';
     // informBackend();
-   
+    try{
+        let result =await fetch('http://localhost:3000/test/auth',{
+            method:'DELETE',
+            headers:{
+                'Content-Type': 'application/json',
+                'x-auth-token':localStorage.getItem('jwtKey')    
+            }
+        },true);
+        //    if(result.status === 200)
+        localStorage.setItem('jwtKey','');
+        loggedIN.style = 'display: none;';
+        signIN.style = 'display: block;';
+        
+        loading.style.display = 'none';
+    }catch(ex){
+        loading.style.display = 'none';
+        alert('Could not sign out');
+    }
+    // result= await result.text();
+    // console.log(result);
 }
 
 
