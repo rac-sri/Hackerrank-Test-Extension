@@ -1,4 +1,2 @@
-console.log('content script');
-//login
-//full screen
-
+// chrome.runtime.onMessage.addListener(()=>console.log('aaaaaa'));
+// // \chrome.se

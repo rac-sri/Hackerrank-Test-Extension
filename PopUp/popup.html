@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="../css/bootstrap.css">             
+</head>
+<body style="width: 500px; height: 300px;">
+    
+    <div class="container center signIN">
+        
+        <form id="login">
+            <br>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input class="form-control" id="email" type="email" placeholder="Enter email" required>
+                
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" id="password" type="password" placeholder="Password" required>
+            </div>
+            <button class="btn btn-success" type="submit">Sign IN</button>
+            
+            <button class="btn btn-link float-right" type="button"><a href="createUser.html">Sign Up</a></button>
+            
+            <div class="loading" style="display: none;"><img src="../Images/loading.gif" ></div>    
+                
+            <div class="login-err danger" style="display: none;">
+                <br>
+                <div class="alert-msg alert alert-dismissible alert-danger">
+                    
+                    <strong></strong> 
+                </div>
+            </div>
+
+                    
+        </form>
+    </div>
+
+    <div class="container center loggedIN " style="display: none;">
+        <button class="btn btn-danger logOUT" type="button">Log Out</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
