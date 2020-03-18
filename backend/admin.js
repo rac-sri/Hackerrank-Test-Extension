@@ -82,9 +82,12 @@ router.post('/updateTime',(req,res)=>{
             res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.html')
         })
         .catch(err=>{
-            console.log(err)
+            console.log('err')
             res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.html')
         })
+})
+router.get('/admindashboard.js',(req,res)=>{
+    res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.js')
 })
 
 

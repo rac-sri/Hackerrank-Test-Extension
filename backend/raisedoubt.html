@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  method="POST" class="submitquery" >
+        question no : <input type="text" name="question" id="1" > <br>
+        description: <input type="text" name="description" id="2"> <br>
+        <input type="submit" value="submit doubt" id="sub">
+    </form>
+</body>
+</html>
+<script>
+    function sendajax(){
+        var xhttp = new XMLHttpRequest();
+        var url = 'http://localhost:8001/submitdoubt';
+        var params = `question=${document.getElementById('1').value}&description=${document.getElementById('2').value}`;
+        xhttp.open('POST', url, true);
+
+        //Send the proper header information along with the request
+        xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhttp.onload = function() {//Call a function when the state changes.
+            if(this.status == 200) {
+                alert(this.responseText);
+            }
+        }
+        xhttp.send(params);
+        alert('ajax req sent');
+    }
+    document.querySelector('#sub').addEventListener('click',sendajax);
+
+</script>

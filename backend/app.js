@@ -27,6 +27,7 @@ app.use(cors({
 const RaiseDoubt=models.RaiseDoubt
 
 app.post('/submitdoubt',(req,res)=>{
+    //console.log('received a post request at this end point')
     var dbt=new RaiseDoubt(req.body)
     console.log(dbt)
     dbt.save()
@@ -73,6 +74,21 @@ app.get('/ext',(req,res)=>{
 
 
 )
+app.get('/getDoubts',(req,res)=>{
+    RaiseDoubt.find({},(err,data)=>{
+        if(err) console.log(err.message)
+        else{
+            console.log('almost done')
+            res.status(200).json({
+                message:"Doubts kmkb",
+                data: data
+            })
+        }
+
+
+    })
+
+})
 
 app.listen(8001)
 
