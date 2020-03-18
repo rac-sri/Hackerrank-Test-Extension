@@ -6,6 +6,8 @@ const sessions=require('client-sessions')
 const bodyParser= require('body-parser')
 const bcrypt=require('bcrypt')
 
+const  Timer  = models.Timer
+
 const router=express.Router()
 
 router.use(sessions({
@@ -63,6 +65,26 @@ router.post('/adminlogin',(req,res)=>{
 
 
     })
+})
+
+router.get('/updatetime',(req,res)=>{
+    res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.html')
+})
+
+router.post('/updateTime',(req,res)=>{
+    var endtime=req.body.time *60*1000 + Date.now()
+    req.body.time=endtime
+    var testDuration= new Timer(req.body)
+    console.log(req.body)
+    testDuration.save()
+        .then((obj)=>{
+            console.log(obj)
+            res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.html')
+        })
+        .catch(err=>{
+            console.log(err)
+            res.sendFile('/root/Desktop/web_dev/hackerrank_extension/backend/admindashboard.html')
+        })
 })
 
 

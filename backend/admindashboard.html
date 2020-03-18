@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>hey admin!</h1>
+    <form action="/admin/updatetime" method="POST" id="setTime">
+        Duration: <input type="text" name="time" placeholder="(in minutes) example 90" id="time">
+        <input type="submit" id="puttimebutton" value="Update Time">
+    </form>
+    <div class="reports"></div>
+
 </body>
 </html>
+<script src="admindashboard.js"></script>

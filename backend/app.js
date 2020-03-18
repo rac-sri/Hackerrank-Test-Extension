@@ -59,14 +59,14 @@ app.post('/timer',(req,res)=>{
 })
 
 app.get('/ext',(req,res)=>{
-            Timer.findOne({},(err,data)=>{
+            Timer.find({},(err,data)=>{
                 if(err) {
                     console.log(err.message);
                 }
 
-                res.status(200).send({
+                res.status(200).json({
                 message:"its working",
-                data: data
+                data: data[data.length-1]
             })})
 
         }
