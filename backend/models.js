@@ -9,6 +9,7 @@ const raise= mongoose.Schema({
         default: Date.now()
     }
 })
+
 const timer= mongoose.Schema({
     date:{
         type: Date,
@@ -17,12 +18,18 @@ const timer= mongoose.Schema({
     time: String
 })
 
+const adminSchema= mongoose.Schema({
+    username: String,
+    password: String
+})
+
 const Timer=mongoose.model('Timer',timer)
 const RaiseDoubt=mongoose.model('RaiseDoubt',raise)
-
+const Admin=mongoose.model('Admin',adminSchema)
 
 module.exports={
     RaiseDoubt: RaiseDoubt,
-    Timer: Timer
+    Timer: Timer,
+    Admin: Admin
 
 }
