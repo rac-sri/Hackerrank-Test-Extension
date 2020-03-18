@@ -6,6 +6,8 @@ const invAuth = require('../middleware/invAuth-middleware');
 
 router.get('/',async (req,res)=>{
     const hostnames = await Hostname.find();
+    
+    
     res.send(hostnames);     
 });
 

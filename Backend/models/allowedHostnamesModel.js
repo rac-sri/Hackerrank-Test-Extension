@@ -13,7 +13,7 @@ const Hostname = mongoose.model('hostname',hostnameSchema);
 
 function validateReq(req){
     const schema = {
-        hostname: Joi.string().required()
+        hostname: Joi.string().required().max(255)
     }
     return Joi.validate(req,schema);
 }

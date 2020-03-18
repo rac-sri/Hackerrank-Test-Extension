@@ -1,6 +1,28 @@
 
 
-const allowedHostNames = ["newtab","settings","extensions","google","youtube"];//get from backend
+const devAllowedList = ["newtab","settings","extensions"];//get from backend
+
+// let allowedHostNames;
+// init();
+// console.log(allowedHostNames);
+// async function init(){
+//     allowedHostNames = await getHostnames();
+// }
+// getHostnames()
+async function getHostnames(){
+    try{
+    let hostnames = await fetch('http://localhost:3000/test/allowed');
+    hostnames = await hostnames.json();
+    // console.log(hostnames);
+    // hostnames
+    return hostnames;
+    
+    }catch(ex){
+       console.log(ex);
+        // return;
+    }
+
+}
 
 
 //allowed hostnames list fro backend
@@ -31,13 +53,19 @@ function checkTab(tab){
         pos=1;
     else pos=0;
     
-    hostname = hostname.split('.')[pos];
-
-    const found= allowedHostNames.find(a => a===hostname)
-    if(!found){
-        chrome.tabs.remove(tab.id);
-        reportBackend(tab.url);
-    }  
+    let hn = hostname.split('.')[pos];
+    getHostnames().then((allowedHostNames)=>{
+        devAllowedList.forEach((e)=>{
+            allowedHostNames.push({
+                hostname:e
+            })
+        })
+        const found= allowedHostNames.find(({hostname}) => hostname===hn)
+        if(!found){
+            chrome.tabs.remove(tab.id);
+            reportBackend(tab.url);
+        }  
+    });
     
 
 }
