@@ -5,12 +5,14 @@ const models=require('./models')
 const cors=require('cors')
 const bodyParser= require('body-parser')
 const adm= require('./admin')
+const dbt=require('./dbt')
 
-// not connecting to database
+
+app.use('/',dbt)
 app.use('/admin',adm)
 
 mongoose.connect('mongodb://localhost/owasptestextension')
-    .then((db)=>console.log(`connected to ${db}`))
+    .then((db)=>console.log(`connected`))
     .catch(err=> console.log(err))
 
 
@@ -24,22 +26,7 @@ app.use(cors({
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
     'preflightContinue': false
 }));
-const RaiseDoubt=models.RaiseDoubt
-
-app.post('/submitdoubt',(req,res)=>{
-    //console.log('received a post request at this end point')
-    var dbt=new RaiseDoubt(req.body)
-    console.log(dbt)
-    dbt.save()
-        .then(()=>RaiseDoubt.find({question:13},(err,data)=>{
-            res.send(data)
-        }))
-        .catch(err=> {
-            res.send(err.message)
-
-        })
-
-})
+//const RaiseDoubt=models.RaiseDoubt
 
 
 app.get('/admin.html',(req,res)=>{
@@ -74,21 +61,22 @@ app.get('/ext',(req,res)=>{
 
 
 )
-app.get('/getDoubts',(req,res)=>{
-    RaiseDoubt.find({},(err,data)=>{
-        if(err) console.log(err.message)
-        else{
-            console.log('almost done')
-            res.status(200).json({
-                message:"Doubts kmkb",
-                data: data
-            })
-        }
+//const RaiseDoubt=models.RaiseDoubt
+// app.get('/getDoubts',(req,res)=>{
+//     RaiseDoubt.find({},(err,data)=>{
+//         if(err) console.log(err.message)
+//         else{
+//             console.log('almost done')
+//             res.status(200).json({
+//                 message:"Doubts kmkb",
+//                 data: data
+//             })
+//         }
 
 
-    })
+//     })
 
-})
+// })
 
 app.listen(8001)
 

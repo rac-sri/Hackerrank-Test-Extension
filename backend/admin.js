@@ -22,7 +22,7 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({extended:true}))
 
 mongoose.connect('mongodb://localhost/owasptestextension',{ useNewUrlParser: true })
-    .then((db)=>console.log(`connected to ${db}`))
+    .then((db)=>console.log(`connected`))
     .catch(err=> console.log(err))
 
 const Admin=models.Admin
