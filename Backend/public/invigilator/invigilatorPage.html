@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -16,17 +17,12 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="inv_hostnames.html">Manage Hostnames</a>
+              <a class="nav-link" href="/test/invigilator/set_test_url">Manage Hostnames</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li> -->
+           
           </ul>
         <div class="form-group">
             <input id="search-name" class="form-control mr-sm-2" type="text" placeholder="Search Name">
@@ -44,9 +40,9 @@
             <thead>
             <tr>
                 <th scope="col">S.No.</th>
-                <th scope="col">Name</th>
+                <th scope="col">Username</th>
                 <th scope="col">URL</th>
-                <th scope="col">Email</th>
+                <th scope="col">Status</th>
                 <th scope="col">Time</th>
             </tr>
             </thead>
@@ -55,6 +51,6 @@
             </tbody>
         </table>    
     </div>
-<script src="invigilator.js"></script>
+<script src="/invigilator/invigilatorPage.js"></script>
 </body>
 </html>

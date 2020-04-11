@@ -1,108 +1,74 @@
 
-const form = document.getElementById('login')
-const userEmail = document.getElementById('email');
-const userPassword= document.getElementById('password');
-const signIN = document.querySelector('.signIN');
-const loggedIN = document.querySelector('.loggedIN');
-const logoutBtn = document.querySelector('.logOUT');
-const loginErr= document.querySelector('.login-err');
-const alertMsg = document.querySelector('.alert-msg');
+const usernameDiv = document.querySelector('.username');
+const form = document.querySelector('#form');
+const startBtn = document.querySelector('.startTest');
+
+const errMsg= document.querySelector('.errMsg');
+
 const loading = document.querySelector('.loading');
-// const loadingLogout = document.querySelector('.loading-logout');
 
 document.addEventListener('DOMContentLoaded',()=>{
-    if(localStorage.getItem('jwtKey'))
-     {   logIn(localStorage.getItem('jwtKey'));
-            console.log(localStorage.getItem('jwtKey'));
-        } 
-     else{
-        // loggedIN.style = 'display: none;';
-        // signIN.style = 'display: block;';
-        // logOut();
+    const startTest = localStorage.getItem('startTest');
+    if(startTest)
+        return testStarted();
+
+    const username = localStorage.getItem('username'); 
+    console.log(username);
+    if(username){    
+        usernameDiv.lastElementChild.innerHTML = username;
+        console.log(usernameDiv);
+    }else{
+        usernameDiv.style.display = 'none';  
+        startBtn.disabled = true;
+        console.log(startBtn);
+        showErrOnUI('You need to log into hackerrank first',0)
     }
 });
+form.addEventListener('submit', startTest);
 
-form.addEventListener('submit',(e)=>{
-    const data={
-        email:userEmail.value,
-        password:userPassword.value
-    };
-    loading.style = 'display:block;';      
-    
-    checkLogin(data)
-        .then((a)=>{
-            logIn(a); 
-        })
-        .catch((err)=>showErrOnUI('Something went wrong'));   
-            
+
+function testStarted(){
+    window.open('test.html','_self');
+}
+
+async function startTest(e){
     e.preventDefault();
-});
-
-logoutBtn.addEventListener('click',logOut);
-
-function showErrOnUI(msg){
-    loginErr.style='display: block;';
-    alertMsg.innerHTML =`<strong>${msg}</strong>`;
-    loading.style = 'display:none;';      
-
-    setTimeout(()=>{loginErr.style='display: none'},3000);
-}
-
-
-async function checkLogin(data){
-    
-    const result=  await fetch('http://localhost:3000/test/auth',{
-        method:'POST',
-        headers: { 
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(data)
-    },true);
-    if(result.status !== 200)
-        return false;
-    return result.text();
- 
-}
-
-
-async function logOut(){
-    loading.style = 'display:block;';
-    // informBackend();
-    try{
-        let result =await fetch('http://localhost:3000/test/auth',{
-            method:'DELETE',
+    const username = localStorage.getItem('username'); 
+    loading.style.display = 'block';
+   try{
+        const testUrl = await fetch('http://localhost:3000/test/candidate',{
+            method: 'GET',
             headers:{
-                'Content-Type': 'application/json',
-                'x-auth-token':localStorage.getItem('jwtKey')    
+            'x-username': username
             }
         },true);
-        //    if(result.status === 200)
-        localStorage.setItem('jwtKey','');
-        loggedIN.style = 'display: none;';
-        signIN.style = 'display: block;';
         
+        const url = await testUrl.text();
+        if(!testUrl.ok)
+           return showErrOnUI(url,3000);
+        
+        localStorage.setItem('startTest','true');
+        testStarted();
+        window.open(url);
         loading.style.display = 'none';
-    }catch(ex){
-        loading.style.display = 'none';
-        alert('Could not sign out');
-    }
-    // result= await result.text();
-    // console.log(result);
-}
-
-
-
-
-function logIn(result){
-    if(result){
-        localStorage.setItem('jwtKey',result);
-
-        loggedIN.style = 'display: block;';
-        signIN.style = 'display: none;';
-                
-        loading.style = 'display:none;';          
-    }else{
-       showErrOnUI('Invalid Emial or Password');
     
+    }catch(ex){
+        alert('error');
+        showErrOnUI(ex.message,3000);
+        console.log(ex);
+    }
+    
+}
+
+function showErrOnUI(msg,timeout){
+    errMsg.firstElementChild.innerHTML = msg;
+
+    loading.style.display = 'none';
+    errMsg.style.display = 'block';
+    if(timeout){
+        setTimeout(()=>{
+            errMsg.style.display = 'none';
+        },timeout);
     }
 }
+

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const {User, validateUser} = require('../models/userModel');
+const {User, validateUser} = require('../models/candidateModel');
 const Joi = require('joi');
 const {LoggedINUser} = require('../models/loggedInUsersModel');
 const authMiddleware = require('../middleware/auth-middleware');
