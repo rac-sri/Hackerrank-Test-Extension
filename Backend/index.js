@@ -13,7 +13,7 @@ const invigilator = require('./routes/invigilator');
 // const port = 3000;
 const dbConnectionString = config.get('db');
 console.log(dbConnectionString);
-//consoel
+
 
 
 mongoose.connect(dbConnectionString,{useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true})
