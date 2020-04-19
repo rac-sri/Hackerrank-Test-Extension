@@ -68,11 +68,13 @@ async function reportBackend(url){
         body:JSON.stringify(report)
         
     });
+  
     if(!result.ok){
         alert('Server Stoped Unexpectedly');
         localStorage.setItem('username','');
         localStorage.setItem('startTest','');
         return;
     }
+    
 
 }
