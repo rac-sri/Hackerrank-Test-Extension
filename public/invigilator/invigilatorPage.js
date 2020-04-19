@@ -25,7 +25,7 @@ async function getReports(){
     if(!reports.ok){
         if(reports.status === 401 ) {
             const url=  await reports.json();
-            return window.open('invigilator/'+url.redirect,'_self');
+            return window.open('/'+url.redirect,'_self');
         }
        
     }
