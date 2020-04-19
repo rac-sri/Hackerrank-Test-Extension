@@ -15,11 +15,12 @@ router.get('/',async (req,res)=>{
         return res.status(400).send('no username header');
     }
 
-    console.log('username in req:',req.header('x-username'));
+    // console.log('username in req:',req.header('x-username'));
     
     let candidate = await Candidate.findOne({username: req.header('x-username')});
     
     if(!candidate){
+        // console.log(candidate);
         candidate = new Candidate({
             username: req.header('x-username'),
             status: 'login',
@@ -43,7 +44,7 @@ router.get('/',async (req,res)=>{
     io.emit('report',report);
 
     await candidate.save();
-    console.log('testUrl',testURL);
+    // console.log('testUrl',testURL);
     
     res.send(testURL);    
 });

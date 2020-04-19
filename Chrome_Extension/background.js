@@ -1,7 +1,12 @@
 
-
+// chrome.runtime.onSuspend.addListener(()=>{
+    
+//     // chrome.runtime.sendMessage({a:'sdhkdjschjd'});
+//     alert('A');
+// });
 const allowedList = ["newtab","settings","extensions","www.hackerrank.com"];
 
+// localStorage.setItem('abc','z');
 localStorage.setItem('username','');
 localStorage.setItem('startTest','');
 
@@ -13,6 +18,7 @@ chrome.tabs.onUpdated.addListener((tabId,tabObj,tab)=>{
         return
     if(tabObj.status === "complete")
         checkTab(tab)
+
 });
 
 chrome.tabs.onActivated.addListener(({tabId})=>{
@@ -40,6 +46,9 @@ function checkTab(tab){
          chrome.tabs.remove(tab.id)
          reportBackend(tab.url);
     }
+    if(found === 'extentions'){
+        localStorage.setItem('isDisabled',true)
+    }
 }
 
 async function reportBackend(url){
@@ -63,3 +72,7 @@ async function reportBackend(url){
     }
 
 }
+// chrome.runtime.onConnect.addListener(function(z) {
+//     
+//   });
+

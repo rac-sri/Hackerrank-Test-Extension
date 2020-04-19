@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invigilator Login</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Extension-Invigilator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <!-- <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/test/invigilator/set_test_url">Manage Hostnames</a>
+            </li>
+           
+          </ul> -->
+       
+          
+    
+    </nav>
+    <br>
+    <div class="heading text-center">
+        <h1>invigilator Login</h1>
+    </div>
+    <br>
+    <div class="container">
+        <form id="login">
+            <fieldset>
+              <div class="form-group">
+                <label for="invUsername">Invigilator Username</label>
+                <input class="form-control" id="invUsername"  type="text" placeholder="Enter username" required>
+               
+              </div>
+              <div class="form-group">
+                <label for="invPassword">Password</label>
+                <input class="form-control" id="invPassword" type="password" placeholder="Password" required>
+              </div>
+            </fieldset>
+            <button class="btn btn-success " type="submit">Submit</button>
+             
+              
+          </form>
+          <div class="msg " style="display: none;">
+            <br>
+            <div class="alert-msg alert alert-dismissible ">
+                
+            </div>
+        </div>
+          <div class="loading" style="display: none;"><img src="/Images/loading.gif" ></div> 
+    </div>
+<!-- <script src="/invigilator/invigilatorLogin.js"></script> -->
+<script src="/invigilator/invigilatorLogin.js"></script>
+</body>
+</html>

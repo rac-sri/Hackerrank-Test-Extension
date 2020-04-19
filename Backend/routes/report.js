@@ -5,10 +5,10 @@ const _ = require('lodash');
 const auth = require('../middleware/auth-middleware');
 const Joi = require('joi');
 
-router.get('/',async (req,res)=>{
+router.get('/',auth ,async (req,res)=>{
     const candidates = await Candidate.find();
-    const reports=[]
-    candidates.forEach(c=>{
+    const reports=[];
+    candidates.forEach(candidate=>{
         reports.push({
             username: candidate.username,
             status: candidate.status,
@@ -22,15 +22,14 @@ router.get('/',async (req,res)=>{
 router.post('/',async (req,res)=>{
     const io = req.app.get('socketio');
     
-
-    console.log('canidate :');
+    // console.log('canidate :');
     const {error} = validateReq(req.body);
     if(error) {
         console.log(error)
         return res.status(400).send(error.details[0].message);
     }
     let candidate = await Candidate.findOne({username: req.body.username});
-
+    //fix this
     if(!candidate){
         candidate = new Candidate({
             username: req.body.username,
@@ -44,6 +43,7 @@ router.post('/',async (req,res)=>{
         });
     }
     if(req.body.URL ==='logout')candidate.status='logout';
+    // if(req.body.URL ==='')candidate.status='logout';
     
     await candidate.save();
     const report= {

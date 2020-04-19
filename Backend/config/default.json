@@ -1,4 +1,7 @@
 {
     "jwtPrivateKey":"defaultJWTKey",
-    "invAuth": "abc@123"
+    "invUsername":"abc",
+    "invPass":"abc12345",
+    "db":"mongodb+srv://Rishabh:Rishabh28@cluster0-kc9oy.mongodb.net/test?retryWrites=true&w=majority",
+    "dbLocal":"mongodb://localhost/HackerRank_Extention"
 }

@@ -9,7 +9,7 @@ form.addEventListener('submit',submitURL);
 
 async function submitURL(e){
     e.preventDefault();
-    console.log('ss');
+    
     loading.style.display = 'block';
     
     try{
@@ -17,19 +17,29 @@ async function submitURL(e){
             method:'POST',
             headers:{
             'Content-Type': 'application/json',
-            'x-invAuth':'abc@123'
+            'x-auth-token': localStorage.getItem('jwt')
             },
             body:JSON.stringify({testURL: urlInput.value })
         });
         
+        
+       
         if(!result.ok){
+            if(result.status=== 401 ) {
+                
+                const url=  await result.json();
+                return window.open(url.redirect,'_self');
+            }
             throw new Error(await result.text());
         }
+
         showMsgOnUI('Test URL saved',true);
     }catch(ex){
       showMsgOnUI(ex.message,false);
     }
 }
+
+
 
 function showMsgOnUI(msg,status){
     console.log(msg);

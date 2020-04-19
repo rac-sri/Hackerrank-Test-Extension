@@ -15,9 +15,21 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 async function getReports(){
-    const reports = await fetch('http://localhost:3000/test/reports');
+    const reports = await fetch('http://localhost:3000/test/reports',{
+        headers:{
+            'Content-Type': 'application/json',
+            'x-auth-token': localStorage.getItem('jwt')
+            }
+    });
 
-    if(!reports.ok) return alert('Error cant fetch reports');
+    if(!reports.ok){
+        if(reports.status === 401 ) {
+            const url=  await reports.json();
+            return window.open('invigilator/'+url.redirect,'_self');
+        }
+       
+    }
+    // if(!reports.ok) return alert('Error: cant fetch reports');
     const r =await reports.json();
 
     r.forEach(report=>addRow(report))
