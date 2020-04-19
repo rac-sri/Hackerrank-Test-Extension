@@ -10,7 +10,6 @@ async function auth(e){
     loading.style.display = 'block';
     
     
-    
     try{
         const jwt =await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/invAuth',{
             method:'POST',
@@ -29,7 +28,7 @@ async function auth(e){
         const token = await jwt.text();
         localStorage.setItem('jwt',token);
        
-        const result = await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/',{
+        const result = await fetch(' https://hackerrank-invigiator.herokuapp.com/',{
             headers:{
                 'x-auth-token':localStorage.getItem('jwt')
             }
@@ -38,15 +37,15 @@ async function auth(e){
             throw new Error(await result.text());
         }
         
-        const a= await result.text();
-        console.log(a);
+        // const a= await result.text();
+        // console.log(a);
         
        
         showMsgOnUI('Logged In',true);
         
         if(document.referrer)
             window.open(document.referrer,'_self');
-        else window.open(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/','_self')
+        else window.open(' https://hackerrank-invigiator.herokuapp.com/','_self')
     }catch(ex){
       showMsgOnUI(ex.message,false);
     }

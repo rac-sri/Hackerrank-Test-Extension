@@ -9,6 +9,8 @@ const compression = require('compression');
 const report = require('./routes/report');
 const candidate = require('./routes/candidate');
 const invigilator = require('./routes/invigilator');
+const invgPage = require('./routes/invgPage');
+
 
 // const port = 3000;
 const dbConnectionString = config.get('db');
@@ -50,10 +52,10 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,x-auth-token,x-username");     
    next();
 });
-
+app.use('/',invgPage);
 app.use('/test/reports',report);
 app.use('/test/candidate',candidate);
-app.use('/',invigilator);
+app.use('/test/invigilator',invigilator);
 
 
 const port = process.env.PORT || 3000;
