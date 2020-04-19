@@ -1,6 +1,4 @@
-// chrome.runtime.onMessage.addListener(z=>{
-//      console.log(z);
-// });
+
 
 document.addEventListener('DOMContentLoaded',()=>{
 
@@ -19,8 +17,4 @@ document.addEventListener('DOMContentLoaded',()=>{
     chrome.runtime.sendMessage({username});
     
 });
-// window.addEventListener("storage", function (e) {
-     
-//      console.log('assasasas',e);
-     
-//  }, false);
+

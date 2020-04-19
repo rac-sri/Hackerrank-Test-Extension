@@ -1,9 +1,5 @@
 
-// chrome.runtime.onSuspend.addListener(()=>{
-    
-//     // chrome.runtime.sendMessage({a:'sdhkdjschjd'});
-//     alert('A');
-// });
+
 const allowedList = ["newtab","settings","extensions","www.hackerrank.com"];
 
 localStorage.setItem('username','');
@@ -19,12 +15,7 @@ chrome.tabs.onUpdated.addListener((tabId,tabObj,tab)=>{
         checkTab(tab)
 
 });
-// console.log('a');
-// window.addEventListener("storage", function (e) {
-//      alert('z');
-//     console.log('z',e);
-    
-//}, false);
+
 chrome.tabs.onActivated.addListener(({tabId})=>{
     
     const startTest = localStorage.getItem('startTest');
