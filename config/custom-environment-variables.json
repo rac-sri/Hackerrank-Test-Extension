@@ -1,0 +1,6 @@
+{
+    "jwtPrivateKey":"test_jwtPrivateKey",
+    "invUsername":"test_invUsername",
+    "invPass":"test_invPassword",
+    "db":"test_dbConnectionString"
+}
