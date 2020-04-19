@@ -12,7 +12,7 @@ async function auth(e){
     
     
     try{
-        const jwt =await fetch('http://localhost:3000/test/invigilator/invAuth',{
+        const jwt =await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/invAuth',{
             method:'POST',
             headers:{
             'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ async function auth(e){
         const token = await jwt.text();
         localStorage.setItem('jwt',token);
        
-        const result = await fetch('http://localhost:3000/test/invigilator/',{
+        const result = await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/',{
             headers:{
                 'x-auth-token':localStorage.getItem('jwt')
             }
@@ -46,7 +46,7 @@ async function auth(e){
         
         if(document.referrer)
             window.open(document.referrer,'_self');
-        else window.open('http://localhost:3000/test/invigilator/','_self')
+        else window.open(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/','_self')
     }catch(ex){
       showMsgOnUI(ex.message,false);
     }

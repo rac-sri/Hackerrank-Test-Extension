@@ -1,6 +1,6 @@
 
 let no =1;
-const serverURL = 'http://localhost:3000';
+const serverURL = 'https://hackerrank-invigiator.herokuapp.com';
 const socket = io.connect(serverURL);
 
 const tableBody=document.querySelector('.table-body');
@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 async function getReports(){
-    const reports = await fetch('http://localhost:3000/test/reports',{
+    const reports = await fetch(' https://hackerrank-invigiator.herokuapp.com/test/reports',{
         headers:{
             'Content-Type': 'application/json',
             'x-auth-token': localStorage.getItem('jwt')
             }
     });
-
+    
     if(!reports.ok){
         if(reports.status === 401 ) {
             const url=  await reports.json();

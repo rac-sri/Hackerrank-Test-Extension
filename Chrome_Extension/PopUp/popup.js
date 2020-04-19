@@ -36,7 +36,7 @@ async function startTest(e){
     const username = localStorage.getItem('username'); 
     loading.style.display = 'block';
    try{
-        const testUrl = await fetch('http://localhost:3000/test/candidate',{
+        const testUrl = await fetch(' https://hackerrank-invigiator.herokuapp.com/test/candidate',{
             method: 'GET',
             headers:{
             'x-username': username

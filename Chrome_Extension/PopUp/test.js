@@ -14,7 +14,7 @@ async function reportBackend(url){
         URL: url
     }
     // console.log('sdadsdadsadasdasdasddas');
-    const result =await fetch('http://localhost:3000/test/reports',{
+    const result =await fetch(' https://hackerrank-invigiator.herokuapp.com/test/reports',{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',

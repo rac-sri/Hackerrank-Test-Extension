@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 app.use('/test/reports',report);
 app.use('/test/candidate',candidate);
-app.use('/test/invigilator',invigilator);
+app.use('/',invigilator);
 
 
 const port = process.env.PORT || 3000;
