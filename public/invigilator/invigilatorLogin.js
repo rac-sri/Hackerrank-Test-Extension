@@ -11,7 +11,7 @@ async function auth(e){
     
     
     try{
-        const jwt =await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/invAuth',{
+        const jwt =await fetch(' https://hackerrank-invigilator.herokuapp.com/test/invigilator/invAuth',{
             method:'POST',
             headers:{
             'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ async function auth(e){
         const token = await jwt.text();
         localStorage.setItem('jwt',token);
        
-        const result = await fetch(' https://hackerrank-invigiator.herokuapp.com/',{
+        const result = await fetch(' https://hackerrank-invigilator.herokuapp.com/',{
             headers:{
                 'x-auth-token':localStorage.getItem('jwt')
             }
@@ -45,7 +45,7 @@ async function auth(e){
         
         if(document.referrer)
             window.open(document.referrer,'_self');
-        else window.open(' https://hackerrank-invigiator.herokuapp.com/','_self')
+        else window.open(' https://hackerrank-invigilator.herokuapp.com/','_self')
     }catch(ex){
       showMsgOnUI(ex.message,false);
     }

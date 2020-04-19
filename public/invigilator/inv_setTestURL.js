@@ -13,7 +13,7 @@ async function submitURL(e){
     loading.style.display = 'block';
     
     try{
-        let result = await fetch(' https://hackerrank-invigiator.herokuapp.com/test/invigilator/startTest',{
+        let result = await fetch(' https://hackerrank-invigilator.herokuapp.com/test/invigilator/startTest',{
             method:'POST',
             headers:{
             'Content-Type': 'application/json',

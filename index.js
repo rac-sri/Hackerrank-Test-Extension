@@ -14,8 +14,8 @@ const invgPage = require('./routes/invgPage');
 
 // const port = 3000;
 const dbConnectionString = config.get('db');
-console.log(dbConnectionString);
-
+// console.log(dbConnectionString);
+// console.log(config.get('invPass')) 
 
 
 mongoose.connect(dbConnectionString,{useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true})

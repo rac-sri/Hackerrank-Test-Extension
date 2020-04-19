@@ -51,7 +51,7 @@ async function reportBackend(url){
         username: localStorage.getItem('username'),
         URL: url
     };
-    const result =await fetch(' https://hackerrank-invigiator.herokuapp.com/test/reports',{
+    const result =await fetch(' https://hackerrank-invigilator.herokuapp.com/test/reports',{
         method:'POST',
         headers:{
             'Content-Type': 'application/json',
