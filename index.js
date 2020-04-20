@@ -2,10 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose  = require('mongoose');
 const config = require('config');
-const socket = require('socket.io');
 const helmet = require('helmet'); 
 const compression = require('compression'); 
-
 const report = require('./routes/report');
 const candidate = require('./routes/candidate');
 const invigilator = require('./routes/invigilator');
@@ -57,8 +55,4 @@ app.use('/test/reports',report);
 app.use('/test/candidate',candidate);
 app.use('/test/invigilator',invigilator);
 
-
-const port = process.env.PORT || 3000;
-const server = app.listen(port,()=>console.log(`listening on port ${port}`));
-const io = socket(server);
-app.set('socketio',io);
+module.exports = app;

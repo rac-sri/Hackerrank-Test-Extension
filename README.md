@@ -7,15 +7,17 @@
 ### Installation:
 
 #### Invigilator (Backend)
+```
 1. Clone the repo.
 2. npm install
 3. npm start
-
+```
 #### Chrome Extension 
+```
 1. Goto chrome://extensions/ 
 2. Enable developer mode
 3. Click on load unpacked and select the ‘Chrome_Extension’ folder
-
+```
 ### Tech Stack Used
 1. Javascript
 2. Node.js
