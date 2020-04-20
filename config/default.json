@@ -1,0 +1,6 @@
+{
+    "jwtPrivateKey":"defaultJWTKey",
+    "invUsername":"abc",
+    "invPass":"abc12345",
+    "db":"mongodb://localhost/HackerRank_Extention"
+}
